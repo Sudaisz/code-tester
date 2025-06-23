@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mini Code Tester</title>
+  <style>
+    body { font-family: sans-serif; display: flex; gap: 10px; padding: 10px; }
+    textarea { width: 32%; height: 300px; font-family: monospace; }
+    iframe { flex: 1; height: 300px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <textarea id="html" placeholder="Write HTML here..."></textarea>
+  <textarea id="css" placeholder="Write CSS here..."></textarea>
+  <textarea id="js" placeholder="Write JavaScript here..."></textarea>
+  <iframe id="output"></iframe>
+
+  <script>
+    const html = document.getElementById('html');
+    const css = document.getElementById('css');
+    const js = document.getElementById('js');
+    const output = document.getElementById('output');
+
+    function updateOutput() {
+      const source = `
+        <html>
+          <head>
+            <style>${css.value}</style>
+          </head>
+          <body>
+            ${html.value}
+            <script>${js.value}<\/script>
+          </body>
+        </html>
+      `;
+      output.srcdoc = source;
+    }
+
+    html.addEventListener('input', updateOutput);
+    css.addEventListener('input', updateOutput);
+    js.addEventListener('input', updateOutput);
+  </script>
+</body>
+</html>
